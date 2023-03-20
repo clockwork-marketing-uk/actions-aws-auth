@@ -1,0 +1,40 @@
+name: Auth Authenticator
+description: "Authenticate to AWS"
+
+inputs:
+  account_id:
+    description: "Account ID for the Role to Assume"
+    required: true
+  role:
+    description: "Name of Role to Assume"
+    required: true
+  region:
+    description: "Name of AWS Region"
+    required: false
+    default: "eu-west-1"
+  duration:
+    description: "Name of Role to Assume"
+    required: false
+    default: 900
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build Role Session Name
+      id: role-session-name
+      shell: bash
+      run: |
+        function strip_unsafe_role_session_name_chars(){ echo "$1" | sed 's/[^[:alnum:]+=,.@-]*//g' ; }
+        REPOSITORY="${GITHUB_REPOSITORY#*/}"
+        ROLE_SESSION_SAFE_REPONAME=$(strip_unsafe_role_session_name_chars "$REPOSITORY")
+        ROLE_SESSION_NAME="${GITHUB_SHA:0:7}+${ROLE_SESSION_SAFE_REPONAME:0:30}+${GITHUB_RUN_ID:0:12}"
+        echo "::set-output name=ROLE_SESSION_NAME::${ROLE_SESSION_NAME}"
+        echo "role_session_name set: ${ROLE_SESSION_NAME}"
+
+    - name: Configure AWS
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: ${{ inputs.region }}
+        role-to-assume: arn:aws:iam::${{ inputs.account_id }}:role/deployment/${{ inputs.role }}
+        role-duration-seconds: ${{ inputs.duration }}
+        role-session-name: ${{ steps.role-session-name.outputs.ROLE_SESSION_NAME }}
