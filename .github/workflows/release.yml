@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create a Release
+        id: create-release
+        uses: clockwork-marketing-uk/actions-release@1.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
