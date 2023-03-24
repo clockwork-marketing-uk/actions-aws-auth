@@ -2,7 +2,7 @@
 
 Authorize using the GitHub OIDC to AWS
 
-## Usage
+## Installation
 
 ---
 
@@ -44,5 +44,19 @@ Any roles will need to have a trusted entity of the Identity Provider set
         }
     ]
 }
+
+```
+
+## Usage
+----
+
+```yaml
+
+    - name: Authorize
+      uses: clockwork-marketing-uk/actions-aws-auth@2
+      with:
+        region: ${{env.AWS_DEFAULT_REGION}}
+        account_id: ${{env.AWS_ACCOUNT_ID}}
+        role: ${{env.ROLE_NAME}}
 
 ```
