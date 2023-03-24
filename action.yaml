@@ -24,10 +24,10 @@ runs:
       id: role-session-name
       shell: bash
       run: |
-        function strip_unsafe_role_session_name_chars(){ echo "$1" | sed 's/[^[:alnum:]+=,.@-]*//g' ; }
+        function create_session_name(){ echo "$1" | sed 's/[^[:alnum:]+=,.@-]*//g' ; }
         REPOSITORY="${GITHUB_REPOSITORY#*/}"
-        ROLE_SESSION_SAFE_REPONAME=$(strip_unsafe_role_session_name_chars "$REPOSITORY")
-        ROLE_SESSION_NAME="${GITHUB_SHA:0:7}+${ROLE_SESSION_SAFE_REPONAME:0:30}+${GITHUB_RUN_ID:0:12}"
+        ROLE_SESSION_REPONAME=$(create_session_name "$REPOSITORY")
+        ROLE_SESSION_NAME="${GITHUB_SHA:0:7}+${ROLE_SESSION_REPONAME:0:30}+${GITHUB_RUN_ID:0:12}"
         echo "ROLE_SESSION_NAME=${ROLE_SESSION_NAME}" >>$GITHUB_OUTPUT
         echo "role_session_name set: ${ROLE_SESSION_NAME}"
 
