@@ -35,6 +35,6 @@ runs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-region: ${{ inputs.region }}
-        role-to-assume: arn:aws:iam::${{ inputs.account_id }}:role/deployment/${{ inputs.role }}
+        role-to-assume: arn:aws:iam::${{ inputs.account_id }}:role/${{ inputs.role }}
         role-duration-seconds: ${{ inputs.duration }}
         role-session-name: ${{ steps.role-session-name.outputs.ROLE_SESSION_NAME }}
