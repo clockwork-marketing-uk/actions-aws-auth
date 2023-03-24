@@ -32,7 +32,7 @@ runs:
         echo "role_session_name set: ${ROLE_SESSION_NAME}"
 
     - name: Configure AWS
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-region: ${{ inputs.region }}
         role-to-assume: arn:aws:iam::${{ inputs.account_id }}:role/${{ inputs.role }}
