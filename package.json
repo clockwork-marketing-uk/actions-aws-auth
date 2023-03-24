@@ -1,0 +1,15 @@
+{
+  "name": "actions-aws-auth",
+  "version": "1.0.0",
+  "description": "Authenticate to AWS using OIDC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clockwork-marketing-uk/actions-aws-auth.git"
+  },
+  "author": "Clockwork Marketing <dev@clock-work.co.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clockwork-marketing-uk/actions-aws-auth/issues"
+  },
+  "homepage": "https://github.com/clockwork-marketing-uk/actions-aws-auth#readme"
+}
