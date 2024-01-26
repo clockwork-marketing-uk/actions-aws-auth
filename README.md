@@ -53,7 +53,7 @@ Any roles will need to have a trusted entity of the Identity Provider set
 ```yaml
 
     - name: Authorize
-      uses: clockwork-marketing-uk/actions-aws-auth@2
+      uses: clockwork-marketing-uk/actions-aws-auth@2.0.1
       with:
         region: ${{env.AWS_DEFAULT_REGION}}
         account_id: ${{env.AWS_ACCOUNT_ID}}

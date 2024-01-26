@@ -1,6 +1,6 @@
 {
   "name": "actions-aws-auth",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Authenticate to AWS using OIDC",
   "repository": {
     "type": "git",
